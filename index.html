@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Boda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      background-color: #fffaf7;
+      color: #333;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+    }
+    .section {
+      margin: 2rem 0;
+    }
+    .button {
+      background-color: #d6a77a;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .map {
+      width: 100%;
+      height: 300px;
+      margin-top: 1rem;
+    }
+    #countdown {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Estás Invitado</h1>
+    <h2>Anna & James</h2>
+    <p class="section">Junto con sus familias<br>solicitan el honor de tu presencia<br>en su celebración de boda</p>
+
+    <div class="section">
+      <h3>Sábado, 11 de Octubre de 2025</h3>
+      <p>4:00 PM<br>Rose Garden Venue, Napa Valley, California</p>
+      <div id="countdown"></div>
+    </div>
+
+    <div class="section">
+      <h3>Nuestra Historia</h3>
+      <p>De un hola en una cafetería a una vida juntos.<br>No podemos esperar para celebrar este día contigo.</p>
+    </div>
+
+    <div class="section">
+      <h3>Confirma tu Asistencia</h3>
+      <p>Por favor confirma antes del 15 de Agosto de 2025</p>
+      <a href="#" class="button">Confirmar Asistencia</a>
+    </div>
+
+    <div class="section">
+      <h3>Ubicación</h3>
+      <p>Rose Garden Venue<br>123 Vineyard Lane, Napa Valley, CA</p>
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.265758787107!2d-122.2864464846811!3d38.29753867966427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8084a2c238af3a17%3A0x27947a6ec7158960!2sNapa%20Valley!5e0!3m2!1ses!2sus!4v1683745183072!5m2!1ses!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <div class="section">
+      <p>¡Estamos muy emocionados de celebrar contigo!<br>Con amor, Anna & James</p>
+    </div>
+  </div>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const weddingDate = new Date("2025-10-11T16:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `Faltan ${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos`;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "¡Es el gran día!";
+      }
+    };
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
